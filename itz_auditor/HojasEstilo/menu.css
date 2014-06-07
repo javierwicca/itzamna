@@ -1,0 +1,120 @@
+
+.p1 td 
+{
+	background-color: #E3E3E3;
+	color: Blue;
+	font-size: 10px;
+	/*filter: alpha(opacity=80);
+	opacity: .8;*/
+	background-repeat: repeat-y;
+	background-position: left;
+}
+.p1 td:hover
+{
+	background-color: #CCE5CC;
+	color: Blue;
+	font-size: 10px;
+	text-decoration: underline;
+	/*filter: alpha(opacity=80);
+	opacity: .8;*/
+}
+.p2 td 
+{
+	background-color: #FFCCAA;
+	color: Blue;
+	font-size: 11px;
+	/*filter: alpha(opacity=80);
+	opacity: .8;*/
+}
+.p2 td:hover
+{
+	background-color: #FF9E5E;
+	color: Blue;
+	font-size: 11px;
+	text-decoration: underline;
+	/*filter: alpha(opacity=80);
+	opacity: .8;*/
+}
+.fondo
+{
+	background-color: #6F9229;
+}
+.td1
+{
+	background-image: url(../imagenes/otro.png);
+}
+/*
+			Horizontal Accordion
+		*/
+		
+		.horizontal_accordion_toggle {
+			/* REQUIRED */
+			float: left;	/* This make sure it stays horizontal */
+			/* REQUIRED */
+
+			height: 110px;
+			width: 16px;
+			background: url(../imagenes/h_accordion_toggle.jpg) no-repeat top left #a9d06a;
+			color: #ffffff;
+			text-decoration: none;
+			border-right: 1px solid #cde99f;
+			cursor: pointer;
+		}
+		
+		.horizontal_accordion_toggle_active {
+			background: url(../imagenes/h_accordion_toggle_active.jpg) no-repeat top left #e0542f;
+			border-right: 1px solid #f68263;
+		}
+		
+		.horizontal_accordion_content {
+			/* REQUIRED */
+			height: 100px;	/* We need to define a height for the accordion as it stretches the width */
+			/* REQUIRED */
+			
+			overflow: hidden;
+			background-color: Red;
+			color: #444444;
+		}
+			
+			.horizontal_accordion_content p {
+				width: 90%;
+				line-height: 150%;
+				/*padding: 3px 5px 10px 5px;*/
+			}
+					
+		
+    /* Container styling*/
+    #horizontal_container {
+      /*margin: 20px auto 20px auto;*/
+      width: 95%;
+			height: 100%;   
+			display: block;
+    }
+		
+		.oculto {
+			background: url(../imagenes/menu_ocul.png) no-repeat;
+			background-color: #007aff;
+			cursor: pointer;
+			color: #ffc400;
+			font-weight: 600;
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 10pt;
+			text-align:center;
+			text-transform: uppercase;
+		}
+		
+		.visible {
+			background: url(../imagenes/menu_visi.png) no-repeat;
+			background-color: #007aff;
+			cursor: pointer;
+			color: #ffc400;
+			font-weight: 600;
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 10pt;
+			text-align:center;
+			text-transform: uppercase;
+		}
+		
+		.menu_hor {
+			background-color:#8080cd;
+		}

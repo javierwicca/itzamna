@@ -1,0 +1,95 @@
+
+.background
+{
+	/*background-image: url(file:///D|/levanegas/Manual%20De%20Usuario/IMAGES/Sin%20nombre.jpg);*/
+	background-position: top;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+.body {
+  font: normal 10px "Trebuchet MS", "Gill Sans", Futura;
+  color: Black;
+  /*background: #fff;*/
+}
+
+.caja {
+  background: #effce7 no-repeat left bottom;
+  margin: 5px auto;
+	cursor: pointer;
+}
+
+.caja h2 {
+  background: no-repeat left top;
+  color: #469C11;
+}
+
+.caja h2 {
+  padding: 10px 20px 0 20px;
+}
+
+.div
+{
+	display: block;
+	line-height: 0;
+	background-color: #AFAFAF;
+}
+.letra 
+{
+	font: oblique;
+	font-family: fantasy;
+	/*color: Gray;*/
+}
+.a1
+{
+	/*color: gray;*/
+	/*font-family: DejaVu Serif Condensed;*/
+	color: black;
+	/*text-decoration: overline;*/
+}
+.a1:linked 
+{
+text-decoration: none
+}
+.a1:visited 
+{
+text-decoration: none
+}
+.a1:hover 
+{
+	text-decoration: none;
+	color: blue;
+	text-decoration: underline;
+}
+.span
+{
+	font-weight: bold;
+	color: Black;
+	font-size: 13px;
+}
+.table
+{
+  border: 10;
+  border-color: Black;
+
+}
+.fondo
+{
+	background-color: #ffffff;
+}
+.fondo td {
+	white-space: nowrap;
+}
+.p1
+{
+	background-color: #FFA73C;
+}
+.p2
+{
+	background-color: #FFC559;
+}	
+	
+
+INPUT :FOCUS {
+	background-color: #FDEDC7;
+}

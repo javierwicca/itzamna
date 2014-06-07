@@ -1,0 +1,13 @@
+Modificar clientes
+	calcular dv
+	nombre y/o razón social
+	versión de tablas de codigos de actividad, quedaron de buscar los datos de los municipios
+	Asociar colores a proveedores; distinguir ventanas
+	
+Pagos
+	El documento: Numero y tipo
+	Cuadro de informacion de los calculos
+	Modificación del registro solamente del mismo dia y usuario
+	Validar numero de documento si ha sido pagado en otro momento
+	Observaciones
+	Revisión de iconos
