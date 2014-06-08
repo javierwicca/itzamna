@@ -3,8 +3,10 @@ namespace Controller;
 header('Content-Type: text/html; charset=ISO-8859-1');
 require_once '../Entidades/Auditoria/BienServiciosEntidad.php';
 require_once '../Entidades/Auditoria/CuentaPucEntidad.php';
+require_once '../Entidades/Auditoria/DetalleFormularioEntidad.php';
 require_once '../Entidades/Auditoria/DocPagosEntidad.php';
 require_once '../Entidades/Auditoria/DocProveedoresEntidad.php';
+require_once '../Entidades/Auditoria/EncabezadoFormularioEntidad.php';
 require_once '../Entidades/Auditoria/MovimientoEntidad.php';
 require_once '../Entidades/Auditoria/PagosEntidad.php';
 require_once '../Entidades/Auditoria/ProveedoresEntidad.php';
@@ -31,9 +33,11 @@ use Entidades\CiiuDirectorioEntidad;
 use Entidades\CiiuEntidad;
 use Entidades\ClientesEntidad;
 use Entidades\CuentaPucEntidad;
+use Entidades\DetalleFormularioEntidad;
 use Entidades\DirectorioEntidad;
 use Entidades\DocPagosEntidad;
 use Entidades\DocProveedoresEntidad;
+use Entidades\EncabezadoFormularioEntidad;
 use Entidades\LugaresEntidad;
 use Entidades\ModificadorTablasEntidad;
 use Entidades\ModulosEntidad;
@@ -57,9 +61,11 @@ class Control{
 	private $CiiuEntidad;
 	private $ClientesEntidad;
 	private $CuentaPucEntidad;
+	private $DetalleFormularioEntidad;
 	private $DirectorioEntidad;
 	private $DocPagosEntidad;
 	private $DocProveedoresEntidad;
+	private $EncabezadoFormularioEntidad;
 	private $LugaresEntidad;
 	private $ModificadorTablasEntidad;
 	private $ModulosEntidad;
@@ -82,9 +88,11 @@ class Control{
 		if (!isset($this->CiiuEntidad))$this->CiiuEntidad=new CiiuEntidad();
 		if (!isset($this->ClientesEntidad)) $this->ClientesEntidad=new ClientesEntidad();
 		if (!isset($this->CuentaPucEntidad)) $this->CuentaPucEntidad=new CuentaPucEntidad();
+		if (!isset($this->DetalleFormularioEntidad))$this->DetalleFormularioEntidad=new DetalleFormularioEntidad();
 		if (!isset($this->DirectorioEntidad))$this->DirectorioEntidad=new DirectorioEntidad();
 		if (!isset($this->DocPagosEntidad)) $this->DocPagosEntidad=new DocPagosEntidad();
 		if (!isset($this->DocProveedoresEntidad)) $this->DocProveedoresEntidad=new DocProveedoresEntidad();
+		if (!isset($this->EncabezadoFormularioEntidad)) $this->EncabezadoFormularioEntidad=new EncabezadoFormularioEntidad();
 		if (!isset($this->NegocioFacade)) $this->NegocioFacade=new NegocioFacade();
 		if (!isset($this->LugaresEntidad))$this->LugaresEntidad=new LugaresEntidad();
 		if (!isset($this->ModificadorTablasEntidad)) $this->ModificadorTablasEntidad=new ModificadorTablasEntidad();
@@ -839,6 +847,49 @@ class Control{
 		$bienServiciosRetorna=$this->NegocioFacade->listarBienServicios($this->BienServiciosEntidad);
 		
 		$resultado=$bienServiciosRetorna->getResultado();
+		if (pg_num_rows($resultado)>0) {
+			$i=0;
+			while ($filas=pg_fetch_row($resultado)) {
+				if ($i>0) $print.="##";
+				$print.=implode('@@',$filas);
+				$i++;
+			}
+			echo $print;
+		}
+	}
+	
+	function consultarDetalleFormulario() {
+		
+		if (base64_decode($_REQUEST[list_t_formulario])!='') $where=" and df.dfo_formulario=".base64_decode($_REQUEST[list_t_formulario]);
+		
+		$this->DetalleFormularioEntidad->setWhere($where);
+		
+		$this->DetalleFormularioEntidad->setOrder("df.dfo_formulario,df.dfo_consecutivo");
+		$detalleFormularioRetorna=$this->NegocioFacade->listarDetalleFormulario($this->DetalleFormularioEntidad);
+		
+		$resultado=$detalleFormularioRetorna->getResultado();
+		if (pg_num_rows($resultado)>0) {
+			$i=0;
+			while ($filas=pg_fetch_row($resultado)) {
+				if ($i>0) $print.="##";
+				$print.=implode('@@',$filas);
+				$i++;
+			}
+			echo $print;
+		}
+	}
+	
+	function consultarEncabezadoFormulario() {
+		
+		if (base64_decode($_REQUEST[list_t_formulario])!='') $where=" and ef.efo_formulario=".base64_decode($_REQUEST[list_t_formulario]);
+		if (base64_decode($_REQUEST[list_s_impuesto])!='') $where.=" and ef.efo_impuesto='".base64_decode($_REQUEST[list_s_impuesto])."'";
+		
+		$this->EncabezadoFormularioEntidad->setWhere($where);
+		
+		$this->EncabezadoFormularioEntidad->setOrder("ef.efo_consecutivo");
+		$encabezadoFormularioRetorna=$this->NegocioFacade->listarDetalleFormulario($this->EncabezadoFormularioEntidad);
+		
+		$resultado=$encabezadoFormularioRetorna->getResultado();
 		if (pg_num_rows($resultado)>0) {
 			$i=0;
 			while ($filas=pg_fetch_row($resultado)) {

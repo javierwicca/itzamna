@@ -2,9 +2,11 @@
 namespace Negocio;
 require_once '../Negocio/Auditoria/BienServiciosNegocio.php';
 require_once '../Negocio/Auditoria/CuentaPucNegocio.php';
+require_once '../Negocio/Auditoria/DetalleFormularioNegocio.php';
 require_once '../Negocio/Auditoria/DetallePagosNegocio.php';
 require_once '../Negocio/Auditoria/DocPagosNegocio.php';
 require_once '../Negocio/Auditoria/DocProveedoresNegocio.php';
+require_once '../Negocio/Auditoria/EncabezadoFormularioNegocio.php';
 require_once '../Negocio/Auditoria/ImpuestoPagosNegocio.php';
 require_once '../Negocio/Auditoria/MovimientoNegocio.php';
 require_once '../Negocio/Auditoria/PagosNegocio.php';
@@ -30,9 +32,11 @@ require_once 'INegocioFacade.php';
 
 require_once '../Entidades/Auditoria/BienServiciosEntidad.php';
 require_once '../Entidades/Auditoria/CuentaPucEntidad.php';
+require_once '../Entidades/Auditoria/DetalleFormularioEntidad.php';
 require_once '../Entidades/Auditoria/DetallePagosEntidad.php';
 require_once '../Entidades/Auditoria/DocPagosEntidad.php';
 require_once '../Entidades/Auditoria/DocProveedoresEntidad.php';
+require_once '../Entidades/Auditoria/EncabezadoFormularioEntidad.php';
 require_once '../Entidades/Auditoria/ImpuestoPagosEntidad.php';
 require_once '../Entidades/Auditoria/MovimientoEntidad.php';
 require_once '../Entidades/Auditoria/PagosEntidad.php';
@@ -61,10 +65,12 @@ use Negocio\CiiuNegocio;
 use Negocio\ClientesNegocio;
 use Negocio\CorreoNegocio;
 use Negocio\CuentaPucNegocio;
+use Negocio\DetalleFormularioNegocio;
 use Negocio\DetallePagosNegocio;
 use Negocio\DirectorioNegocio;
 use Negocio\DocPagosNegocio;
 use Negocio\DocProveedoresNegocio;
+use Negocio\EncabezadoFormularioNegocio;
 use Negocio\ImpuestoPagosNegocio;
 use Negocio\LugaresNegocio;
 use Negocio\ModificadorTablasNegocio;
@@ -87,10 +93,12 @@ use Entidades\CiiuEntidad;
 use Entidades\ClientesEntidad;
 use Entidades\CorreoEntidad;
 use Entidades\CuentaPucEntidad;
+use Entidades\DetalleFormularioEntidad;
 use Entidades\DetallePagosEntidad;
 use Entidades\DirectorioEntidad;
 use Entidades\DocPagosEntidad;
 use Entidades\DocProveedoresEntidad;
+use Entidades\EncabezadoFormularioEntidad;
 use Entidades\ImpuestoPagosEntidad;
 use Entidades\LugaresEntidad;
 use Entidades\ModificadorTablasEntidad;
@@ -105,6 +113,7 @@ use Entidades\RolesPermisosEntidad;
 use Entidades\RolesUsuariosEntidad;
 use Entidades\SaldosEntidad;
 use Entidades\UsuarioEntidad;
+use DAO\EncabezadoFormularioDAO;
 
 class NegocioFacade implements INegocioFacade{
 	
@@ -115,10 +124,12 @@ class NegocioFacade implements INegocioFacade{
 	private $clientesNegocio;
 	private $correoNegocio;
 	private $cuentaPucNegocio;
+	private $detalleFormularioNegocio;
 	private $detallePagosNegocio;
 	private $directorioNegocio;
 	private $docPagosNegocio;
 	private $docProveedoresNegocio;
+	private $encabezadoFormularioNegocio;
 	private $funcionesNegocio;
 	private $impuestoPagosNegocio;
 	private $lugaresNegocio;
@@ -143,10 +154,12 @@ class NegocioFacade implements INegocioFacade{
 		if (!isset($this->clientesNegocio))$this->clientesNegocio=new ClientesNegocio();
 		if (!isset($this->correoNegocio))$this->correoNegocio=new CorreoNegocio();
 		if (!isset($this->cuentaPucNegocio))$this->cuentaPucNegocio=new CuentaPucNegocio();
+		if (!isset($this->detalleFormularioNegocio))$this->detalleFormularioNegocio=new DetallePagosNegocio();
 		if (!isset($this->detallePagosNegocio))$this->detallePagosNegocio=new DetallePagosNegocio();
 		if (!isset($this->directorioNegocio))$this->directorioNegocio=new DirectorioNegocio();
 		if (!isset($this->docPagosNegocio))$this->docPagosNegocio=new DocPagosNegocio();
 		if (!isset($this->docProveedoresNegocio))$this->docProveedoresNegocio=new DocProveedoresNegocio();
+		if (!isset($this->encabezadoFormularioNegocio))$this->encabezadoFormularioNegocio=new EncabezadoFormularioDAO();
 		if (!isset($this->funcionesNegocio))$this->funcionesNegocio=new FuncionesNegocio();
 		if (!isset($this->impuestoPagosNegocio))$this->impuestoPagosNegocio=new ImpuestoPagosNegocio();
 		if (!isset($this->lugaresNegocio))$this->lugaresNegocio=new LugaresNegocio();
@@ -483,6 +496,22 @@ class NegocioFacade implements INegocioFacade{
 	
 	public function enviarCorreo(CorreoEntidad $correo){
 		return $this->correoNegocio->enviarCorreo($correo);
+	}
+	
+	public function listarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario){
+		return $this->encabezadoFormularioNegocio->listarEncabezadoFormulario($encabezadoFormulario);
+	}
+	
+	public function adicionarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario){
+		return $this->encabezadoFormularioNegocio->adicionarEncabezadoFormulario($encabezadoFormulario);
+	}
+	
+	public function modificarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario){
+		return $this->encabezadoFormularioNegocio->modificarEncabezadoFormulario($encabezadoFormulario);
+	}
+	
+	public function listarDetalleFormulario(DetalleFormularioEntidad $detalleFormulario){
+		return $this->encabezadoFormularioNegocio->listarDetalleFormulario($detalleFormulario);
 	}
 	
 	public function reempHtmlCaracEsp($texto) {

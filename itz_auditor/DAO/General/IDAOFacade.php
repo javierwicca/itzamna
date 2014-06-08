@@ -2,6 +2,7 @@
 namespace DAO;
 require_once '../Entidades/Auditoria/BienServiciosEntidad.php';
 require_once '../Entidades/Auditoria/CuentaPucEntidad.php';
+require_once '../Entidades/Auditoria/DetalleFormularioEntidad.php';
 require_once '../Entidades/Auditoria/DetallePagosEntidad.php';
 require_once '../Entidades/Auditoria/DocPagosEntidad.php';
 require_once '../Entidades/Auditoria/DocProveedoresEntidad.php';
@@ -32,10 +33,12 @@ use Entidades\CiiuEntidad;
 use Entidades\ClientesEntidad;
 use Entidades\CorreoEntidad;
 use Entidades\CuentaPucEntidad;
+use Entidades\DetalleFormularioEntidad;
 use Entidades\DetallePagosEntidad;
 use Entidades\DirectorioEntidad;
 use Entidades\DocPagosEntidad;
 use Entidades\DocProveedoresEntidad;
+use Entidades\EncabezadoFormularioEntidad;
 use Entidades\ImpuestoPagosEntidad;
 use Entidades\LugaresEntidad;
 use Entidades\ModificadorTablasEntidad;
@@ -127,5 +130,9 @@ interface IDAOFacade{
 	public function borrarSaldos(SaldosEntidad $saldos);
 	public function insertarSaldos(SaldosEntidad $saldos);
 	public function insertarSaldosCop(SaldosEntidad $saldos);
+	public function listarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario);
+	public function adicionarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario);
+	public function modificarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario);
+	public function listarDetalleFormulario(DetalleFormularioEntidad $detalleFormulario);
 }
 ?>

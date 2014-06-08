@@ -2,9 +2,11 @@
 namespace DAO;
 require_once '../DAO/Auditoria/BienServiciosDAO.php';
 require_once '../DAO/Auditoria/CuentaPucDAO.php';
+require_once '../DAO/Auditoria/DetalleFormularioDAO.php';
 require_once '../DAO/Auditoria/DetallePagosDAO.php';
 require_once '../DAO/Auditoria/DocPagosDAO.php';
 require_once '../DAO/Auditoria/DocProveedoresDAO.php';
+require_once '../DAO/Auditoria/EncabezadoFormularioDAO.php';
 require_once '../DAO/Auditoria/ImpuestoPagosDAO.php';
 require_once '../DAO/Auditoria/MovimientoDAO.php';
 require_once '../DAO/Auditoria/PagosDAO.php';
@@ -29,9 +31,11 @@ require_once 'IDAOFacade.php';
 
 require_once '../Entidades/Auditoria/BienServiciosEntidad.php';
 require_once '../Entidades/Auditoria/CuentaPucEntidad.php';
+require_once '../Entidades/Auditoria/DetalleFormularioEntidad.php';
 require_once '../Entidades/Auditoria/DetallePagosEntidad.php';
 require_once '../Entidades/Auditoria/DocPagosEntidad.php';
 require_once '../Entidades/Auditoria/DocProveedoresEntidad.php';
+require_once '../Entidades/Auditoria/EncabezadoFormularioEntidad.php';
 require_once '../Entidades/Auditoria/ImpuestoPagosEntidad.php';
 require_once '../Entidades/Auditoria/MovimientoEntidad.php';
 require_once '../Entidades/Auditoria/PagosEntidad.php';
@@ -60,10 +64,12 @@ use DAO\CiiuDirectorioDAO;
 use DAO\ClientesDAO;
 use DAO\CorreoDAO;
 use DAO\CuentaPucDAO;
+use DAO\DetalleFormularioDAO;
 use DAO\DetallePagosDAO;
 use DAO\DirectorioDAO;
 use DAO\DocPagosDAO;
 use DAO\DocProveedoresDAO;
+use DAO\EncabezadoFormularioDAO;
 use DAO\ImpuestoPagosDAO;
 use DAO\LugaresDAO;
 use DAO\ModifacadorTablasDAO;
@@ -86,10 +92,12 @@ use Entidades\CiiuEntidad;
 use Entidades\ClientesEntidad;
 use Entidades\CorreoEntidad;
 use Entidades\CuentaPucEntidad;
+use Entidades\DetalleFormularioEntidad;
 use Entidades\DetallePagosEntidad;
 use Entidades\DirectorioEntidad;
 use Entidades\DocPagosEntidad;
 use Entidades\DocProveedoresEntidad;
+use Entidades\EncabezadoFormularioEntidad;
 use Entidades\ImpuestoPagosEntidad;
 use Entidades\LugaresEntidad;
 use Entidades\ModificadorTablasEntidad;
@@ -114,10 +122,12 @@ class DAOFacade implements IDAOFacade{
 	private $clientesDAO;
 	private $correoDAO;
 	private $cuentaPucDAO;
+	private $detalleFormularioDAO;
 	private $detallePagosDAO;
 	private $directorioDAO;
 	private $docPagosDAO;
 	private $docProveedoresDAO;
+	private $encabezadoFormularioDAO;
 	private $impuestoPagosDAO;
 	private $lugaresDAO;
 	private $modificadorTablasDAO;
@@ -141,10 +151,12 @@ class DAOFacade implements IDAOFacade{
 		if (!isset($this->clientesDAO))$this->clientesDAO=new ClientesDAO();
 		if (!isset($this->correoDAO))$this->correoDAO=new CorreoDAO();
 		if (!isset($this->cuentaPucDAO))$this->cuentaPucDAO=new CuentaPucDAO();
+		if (!isset($this->detalleFormularioDAO))$this->detalleFormularioDAO=new DetalleFormularioDAO();
 		if (!isset($this->detallePagosDAO))$this->detallePagosDAO=new DetallePagosDAO();
 		if (!isset($this->directorioDAO))$this->directorioDAO=new DirectorioDAO();
 		if (!isset($this->docPagosDAO))$this->docPagosDAO=new DocPagosDAO();
 		if (!isset($this->docProveedoresDAO))$this->docProveedoresDAO=new DocProveedoresDAO();
+		if (!isset($this->encabezadoFormularioDAO))$this->encabezadoFormularioDAO=new EncabezadoFormularioDAO();
 		if (!isset($this->impuestoPagosDAO))$this->impuestoPagosDAO=new ImpuestoPagosDAO();
 		if (!isset($this->lugaresDAO))$this->lugaresDAO=new LugaresDAO();
 		if (!isset($this->modificadorTablasDAO))$this->modificadorTablasDAO=new ModificadorTablasDAO();
@@ -380,6 +392,22 @@ class DAOFacade implements IDAOFacade{
 	
 	public function modificarBienServicios(BienServiciosEntidad $bienServicios){
 		return $this->bienServiciosDAO->modificarBienServicios($bienServicios);
+	}
+	
+	public function listarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario){
+		return $this->encabezadoFormularioDAO->listarEncabezadoFormulario($encabezadoFormulario);
+	}
+	
+	public function adicionarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario){
+		return $this->encabezadoFormularioDAO->adicionarEncabezadoFormulario($encabezadoFormulario);
+	}
+	
+	public function modificarEncabezadoFormulario(EncabezadoFormularioEntidad $encabezadoFormulario){
+		return $this->encabezadoFormularioDAO->modificarEncabezadoFormulario($encabezadoFormulario);
+	}
+	
+	public function listarDetalleFormulario(DetalleFormularioEntidad $detalleFormulario){
+		return $this->detalleFormularioDAO->listarDetalleFormulario($detalleFormulario);
 	}
 	
 	public function listarDetallePagos(DetallePagosEntidad $detallePagos){
